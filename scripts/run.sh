@@ -3,7 +3,10 @@
 export DOTENV=~/Development/dineforward/env.dev
 
 echo "Starting services..."
-brew services restart mongodb
+brew services stop mongodb-community@4.2
+sleep 1
+brew services start mongodb-community@4.2
+sleep 1
 
 echo "Starting dineforward"
 yarn
