@@ -47,3 +47,5 @@ dependencies_file=./config/general_dependencies_file
 
 The dependencies files are used to define the dependencies for each of the configuration files.
 
+The application is started using deploy.sh.
+
