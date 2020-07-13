@@ -4,9 +4,9 @@ ENV=${1:-dev}
 echo "Generating configuration files..."
 . ./deploy_${ENV}.cfg
 
-general_dependencies=`cat ${general_dependencies_file}`
-
-echo ${dependencies}
+general_dependencies=`cat ${dependencies_file}`
+runner_dependencies=`cat ${runner_dependencies_file}`
+config_dependencies=`cat ${config_dependencies_file}`
 
 cat << !EOF0 > ./package.json
 {
@@ -53,7 +53,7 @@ cat << !EOF0 > ./package.json
     "check-links": "./scripts/check-links.sh"
   },
   "dependencies": {
-  ${general_dependencies}
+${general_dependencies}
   },
   "workspaces": [
     "packages/*"
@@ -97,18 +97,7 @@ cat << !EOF1 > ./packages/runner/package.json
   "scripts": {
   },
   "dependencies": {
-    "arg": "^4.1.3",
-    "chalk": "^3.0.0",
-    "ci-info": "^2.0.0",
-    "cross-env": "^7.0.0",
-    "dev-null": "^0.1.1",
-    "endent": "^1.4.1",
-    "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "fs-extra": "^9.0.0",
-    "globby": "^11.0.0",
-    "ora": "^4.0.3",
-    "terminal-link": "^2.1.1"
+${runner_dependencies}
   },
   "devDependencies": {}
 }
@@ -130,8 +119,7 @@ cat << !EOF2 > ./packages/config/package.json
   "scripts": {
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "expand-template": "^2.0.3"
+${config_dependencies}
   },
   "devDependencies": {
   }
